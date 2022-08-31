@@ -98,6 +98,10 @@ def convert(photo_path, video_path, output_path):
     offset = merged_filesize - photo_filesize
     add_xmp_metadata(merged, offset)
 
+    # delete original photo and video
+    os.remove(photo_path)
+    os.remove(video_path)
+
 def matching_video(photo_path):
     base = os.path.splitext(photo_path)[0]
     logging.info("Looking for videos named: {}".format(base))
