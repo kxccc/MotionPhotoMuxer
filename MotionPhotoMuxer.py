@@ -45,7 +45,12 @@ def merge_files(photo_path, video_path, output_path):
     :return: File name of the merged output file
     """
     logging.info("Merging {} and {}.".format(photo_path, video_path))
-    out_path = os.path.join(output_path, "{}".format(basename(photo_path)))
+
+    # rename output file
+    out_name = basename(photo_path)
+    out_name = os.path.splitext(out_name)[0]
+
+    out_path = os.path.join(output_path, "{}_MP.JPG".format(out_name))
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "wb") as outfile, open(photo_path, "rb") as photo, open(video_path, "rb") as video:
         outfile.write(photo.read())
